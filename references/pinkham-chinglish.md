@@ -101,7 +101,7 @@
 - 强词 + 强化词（更糟，强化词反而削弱原词）：great historic、serious chaos、firmly ban、strongly demand、totally abolish、thoroughly eliminate、completely smash、tremendous ... unparalleled、the broad masses、a tiny handful。→ 删强化词。
 - **最常见的冗余强化词**：active/actively（努力不可能是"消极"的）、effective/effectively（control 不有效就不叫 control）、actual/true/real（facts, situation, conditions 本身就是真实的）、successful/successfully（accomplish 就是成功完成）。
 - 强化词叠用反而引起怀疑：has convincingly proved 不如 has proved；is truly rising... genuinely growing 不如直接 rising / growing。美国宪法第一修正案只写 Congress shall make no law，不写 absolutely。
-**改法**：删；若原文强调确需保留，用别的手段补：vigorously promote、we are determined to enforce...，或换更强的单词（dissatisfied → indignant / outraged）。
+**改法**：删；若原文强调确需保留，用别的手段补：we are determined to enforce...，或换更强的单词（dissatisfied → indignant / outraged）。原书也举过 vigorously promote，但本 skill 对"大力""积极"一类的处理以 SKILL.md 总立场第 5 条为准：把力度转进强动词（step up、press ahead），不加 -ly 副词。
 
 ### 3.4 弱化词（qualifiers）
 **识别**：quite、rather、relatively、comparatively、fairly、somewhat、basically、reasonably、a little；没有比较标准时滥用，显得畏缩、"明褒实贬"。a reasonably substantial book giving a comparatively complete history 在英文读者看来是冷淡评价。
@@ -312,7 +312,7 @@
 | 39 | continue to further improve | continue to improve | 冗余修饰 |
 | 40 | further deepen / further push forward | deepen / push forward | 套话修饰 |
 | 41 | various construction projects / various businesses | construction projects / businesses | 冗余修饰 |
-| 42 | actively promote / active efforts | promote（需强调则 vigorously promote） | 冗余强化 |
+| 42 | actively promote / active efforts | promote（需强调则换强动词，如 step up，见 SKILL 总立场第 5 条） | 冗余强化 |
 | 43 | effectively protect / effective control | protect / control | 冗余强化 |
 | 44 | actual facts / the actual situation / real conditions | facts / the (particular) situation / conditions | 冗余强化 |
 | 45 | successfully accomplish / successfully develop | accomplish / develop | 冗余强化 |
