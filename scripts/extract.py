@@ -123,6 +123,9 @@ def _hdr_key(line):
     return re.sub(r"[\divxlcdm\W_]+", " ", line, flags=re.I).strip().lower()
 
 
+PAGE_BREAK = "\x00PAGE\x00"
+
+
 def _clean_pdf_pages(raw):
     """raw text from pdftotext (-layout), pages separated by form feed."""
     pages = raw.split("\f")
@@ -157,15 +160,21 @@ def _clean_pdf_pages(raw):
             ):
                 continue  # drop running head/foot and bare page numbers
             cleaned_lines.append(l)
-        cleaned_lines.append("")  # page boundary -> blank
+        cleaned_lines.append(PAGE_BREAK)
 
     text = "\n".join(cleaned_lines)
     # De-hyphenate words broken across line ends: "consid-\nered" -> "considered"
     text = re.sub(r"([A-Za-z])-\n([a-z])", r"\1\2", text)
     # Join wrapped lines within a paragraph (line not ending in sentence punctuation,
     # next line starting lowercase) into spaces; keep blank lines as paragraph breaks.
+    # A page break ends the paragraph only if the page ended a sentence;
+    # otherwise the paragraph runs on to the next page.
     out, buf = [], []
     for line in text.split("\n"):
+        if line == PAGE_BREAK:
+            if buf and re.search(r"[.!?:;\"”’')\]]\s*$", buf[-1]):
+                out.append(" ".join(buf)); buf = []
+            continue
         if not line.strip():
             if buf:
                 out.append(" ".join(buf)); buf = []
