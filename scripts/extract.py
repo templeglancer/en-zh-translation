@@ -204,6 +204,11 @@ def extract_pdf(path):
         para = para.strip()
         if not para:
             continue
+        # An ALL-CAPS run-in heading glued to its paragraph ("BIOGRAPHICAL ESSAY In a decade...").
+        m = re.match(r"([A-Z][A-Z'&\-]+(?: [A-Z][A-Z'&\-]+)+) (?=[A-Z][a-z])", para)
+        if m and len(m.group(1)) < 60:
+            blocks.append({"type": "heading", "level": 1, "text": m.group(1).title()})
+            para = para[m.end():]
         # Heuristic: short ALL-CAPS or "Chapter N" line => heading.
         if re.match(r"(chapter|part|book)\s+[\divxlc]+", para, re.I) or (
             len(para) < 60 and para.isupper()
