@@ -120,7 +120,10 @@ def _hdr_key(line):
     """Normalize an edge line for running-header detection: drop digits, roman
     numerals and punctuation so 'THE NOVEL   3' and 'THE NOVEL   4' collapse to
     the same key."""
-    return re.sub(r"[\divxlcdm\W_]+", " ", line, flags=re.I).strip().lower()
+    # OCR'd page numbers come out as look-alikes ("i j", "Jo", "I$6"); drop short
+    # tokens made of such characters, then ignore letter-spacing ("C A R T E S I A N").
+    line = re.sub(r"^\W*(?:[\dIilJjoOzZS$/]{1,3}\W+){1,2}|(?:\W+[\dIilJjoOzZS$/]{1,3}){1,2}\W*$", " ", line.strip())
+    return re.sub(r"[\divxlcdm\W_]+", "", line, flags=re.I).lower()
 
 
 PAGE_BREAK = "\x00PAGE\x00"
@@ -140,7 +143,7 @@ def _clean_pdf_pages(raw):
                 if k:
                     edge_keys[k] += 1
     npages = max(1, len([p for p in pages if p.strip()]))
-    thresh = max(2, round(npages * 0.4))
+    thresh = max(4, round(npages * 0.05))  # a story-level odd-page head may cover only a few dozen pages
     running = {k for k, c in edge_keys.items() if c >= thresh}
 
     cleaned_lines = []
